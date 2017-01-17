@@ -72,9 +72,9 @@ class RegisterController extends Controller
         ]);
     }
     
-    public function showCustomerRegistrationForm()
+    public function showSalesRepRegistrationForm()
     {
-        return view('auth.customer-register');
+        return view('auth.sales-rep-register');
     }
     
     public function showAdminRegistrationForm()
@@ -82,13 +82,13 @@ class RegisterController extends Controller
         return view('auth.admin-register');
     }
     
-    public function registerCustomer(Request $request)
+    public function registerSalesRep(Request $request)
     {
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        $customerRole = Role::where('name', '=', 'customer')->firstOrFail();
-        $user->attachRole($customerRole);
+        $role = Role::where('name', '=', 'sales-rep')->firstOrFail();
+        $user->attachRole($role);
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
@@ -100,8 +100,8 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        $adminRole = Role::where('name', '=', 'admin')->firstOrFail();
-        $user->attachRole($adminRole);
+        $role = Role::where('name', '=', 'admin')->firstOrFail();
+        $user->attachRole($role);
         $this->guard()->login($user);
 
         return $this->registered($request, $user)

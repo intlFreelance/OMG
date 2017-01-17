@@ -6,5 +6,6 @@
 * Run: `php artisan migrate`
 * Run: `npm install`
 * Run: `bower install`
+* Run: `php artisan db:seed`
 * Run: `gulp` & `gulp watch` to watch for file changes
 
