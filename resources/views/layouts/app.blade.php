@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/bootstrap-theme-cirrus/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
