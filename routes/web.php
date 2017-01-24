@@ -36,4 +36,5 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index');
 Route::group(['middleware'=>'auth'], function () {
     Route::resource('users', 'UserController');
+    Route::resource('contacts', 'ContactController');
 });

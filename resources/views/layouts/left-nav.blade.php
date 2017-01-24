@@ -9,4 +9,7 @@
         </ul>
     </li>
     @endif
+    @if(Auth::user()->hasRole(['admin','sales-rep']))
+        <li><a href="{{ url('contacts') }}">Contacts</a></li>
+    @endif
 </ul>
