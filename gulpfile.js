@@ -14,10 +14,10 @@ const elixir = require('laravel-elixir');
 elixir(mix => {
     mix.sass('app.scss')
        .copy('node_modules/bootstrap-sass/assets/fonts','public/fonts')
-       .copy('bower_components/bootstrap/dist/css','public/css/bootstrap')
+       .copy('bower_components/bootstrap-theme-cirrus/dist/css','public/css/bootstrap-theme-cirrus')
        .scripts([
             '../../../bower_components/angular/angular.min.js',
-            '../../../bower_components/jquery/dist/jquery.min.js',
+            '../../../bower_components/jquery/jquery.min.js',
             '../../../bower_components/bootstrap/dist/js/bootstrap.min.js',
             'app.js',
         ], 'public/js/app.js');
