@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/bootstrap-theme-cirrus/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/sweetalert2.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -36,16 +37,16 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    @if(!Auth::guest())
+                        @include('layouts.left-nav')
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

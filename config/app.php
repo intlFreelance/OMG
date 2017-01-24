@@ -167,7 +167,9 @@ return [
          * Package Service Providers...
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
-        //
+        Nayjest\Grids\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
@@ -226,6 +228,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Form'  => Illuminate\Html\FormFacade::class,
+        'HTML'  => Collective\Html\HtmlFacade::class,
+        'Grids'     => Nayjest\Grids\Grids::class,
     ],
 
 ];
