@@ -37,4 +37,9 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware'=>'auth'], function () {
     Route::resource('users', 'UserController');
     Route::resource('contacts', 'ContactController');
+    Route::resource('accounts', 'AccountController');
+    Route::post('accounts/save', 'AccountController@save');
+    Route::get('accounts/search-sales-rep/{query}', 'AccountController@searchSalesRep');
+    Route::get('accounts/search-contacts/{query}', 'AccountController@searchContacts');
+    Route::get('accounts/get-by-id/{id}', 'AccountController@getById');
 });

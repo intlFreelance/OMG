@@ -1,3 +1,10 @@
 .gray-bg{
     background-color: $panel-default-body-bg;
 }
+.remove-icon{
+    color: darkred;
+    font-size: large;
+}
+.remove-icon:hover{
+     color: #c50505;
+ }

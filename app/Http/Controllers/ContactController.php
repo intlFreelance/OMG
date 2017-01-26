@@ -163,7 +163,6 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contact = $this->loadModel($id);
          $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
