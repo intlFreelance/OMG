@@ -11,5 +11,6 @@
     @endif
     @if(Auth::user()->hasRole(['admin','sales-rep']))
         <li><a href="{{ url('contacts') }}">Contacts</a></li>
+        <li><a href="{{ url('accounts') }}">Accounts</a></li>
     @endif
 </ul>

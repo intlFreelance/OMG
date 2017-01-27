@@ -14,4 +14,9 @@ class Contact extends Model
     protected $fillable = [
         'name', 'email', 'phoneNumber',
     ];
+    protected $casts = ['isPrimary'=>'boolean'];
+
+    public function account(){
+        return $this->belongsTo('App\Account', 'account_id');
+    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="/css/bootstrap-theme-cirrus/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/sweetalert2.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
