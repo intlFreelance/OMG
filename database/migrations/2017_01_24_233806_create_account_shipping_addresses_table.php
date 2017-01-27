@@ -16,7 +16,7 @@ class CreateAccountShippingAddressesTable extends Migration
         Schema::create('account_shipping_addresses', function(Blueprint $table){
             $table->increments('id');
             $table->integer('account_id')->unsigned();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->text('address');
         });
     }

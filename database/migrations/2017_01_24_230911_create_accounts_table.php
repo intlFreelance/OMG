@@ -26,9 +26,9 @@ class CreateAccountsTable extends Migration
             $table->string('website')->nullable();
             $table->text('notes')->nullable();
             $table->integer('primarySalesRep_id')->unsigned();
-            $table->foreign('primarySalesRep_id')->references('id')->on('contacts');
+            $table->foreign('primarySalesRep_id')->references('id')->on('users');
             $table->integer('secondarySalesRep_id')->unsigned();
-            $table->foreign('secondarySalesRep_id')->references('id')->on('contacts');
+            $table->foreign('secondarySalesRep_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
