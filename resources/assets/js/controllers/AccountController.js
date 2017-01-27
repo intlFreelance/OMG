@@ -1,4 +1,5 @@
 app.controller('AccountController', function($scope, $http, $log) {
+    $scope.readOnly = false;
     $scope.loadModel = loadModel;
     $scope.searchSalesReps = searchSalesReps;
     $scope.searchContacts = searchContacts;
@@ -40,7 +41,8 @@ app.controller('AccountController', function($scope, $http, $log) {
     function removeShippingAddress(index){
         $scope.account.shipping_addresses.splice(index, 1);
     }
-    function loadModel(id){
+    function loadModel(id, readOnly){
+        $scope.readOnly = readOnly;
         if(id==null){
             $scope.account.contacts.push({});
             $scope.account.shipping_addresses.push({});

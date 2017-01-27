@@ -63,9 +63,9 @@ class AccountController extends Controller
                         $account = $row->getSrc();
                         $buttons =
                             "<div class='btn-group'>
-                                <!--a href='".route('accounts.show', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a-->
-                                <a href='". route('accounts.edit', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
-                                <a href='". route('accounts.destroy', [$account->id]) ."' data-delete=''  class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                <a href='".route('accounts.show', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                <a href='".route('accounts.edit', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
+                                <a href='".route('accounts.destroy', [$account->id])."' data-delete='' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                             </div>";
                         return $buttons;
                     })
@@ -110,7 +110,7 @@ class AccountController extends Controller
      */
     public function save(Request $request)
     {
-       // try{
+        try{
             $data = json_decode($request->input()['data'], true);
             if(isset($data['id'])){
                 $account = Account::find($data['id']);
@@ -160,9 +160,9 @@ class AccountController extends Controller
                 $dbAccountShippingAddress->save();
             }
             $response = ["success"=>true];
-      //  }catch(Exception $ex){
-      //      $response = ["success"=>false, "message"=>$ex->getMessage()];
-      //  }
+        }catch(Exception $ex){
+            $response = ["success"=>false, "message"=>$ex->getMessage()];
+        }
         return response()->json($response);
     }
 
@@ -174,7 +174,7 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-
+        return view('accounts.show')->with('id', $id);
     }
 
     /**
