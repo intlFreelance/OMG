@@ -114,10 +114,17 @@ class AccountController extends Controller
     {
         try{
             $data = json_decode($request->input()['data'], true);
+            $count = 0;
             if(isset($data['id'])){
                 $account = Account::find($data['id']);
+                $count = Account::where('name','=',$data['name'])->where('id','<>',$data['id'])->count();
+
             }else{
                 $account = new Account();
+                $count = Account::where('name','=',$data['name'])->count();
+            }
+            if($count > 0){
+                throw new Exception("The account name already exists.");
             }
             $account->fill($data);
             $account->primarySalesRep_id = $data["primary_sales_rep"]["id"];

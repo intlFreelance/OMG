@@ -65,7 +65,7 @@ app.controller('AccountController', function($scope, $http, $log) {
                 $log.error(response.data.message);
                 swal(
                     'Oops...',
-                    'Something went wrong! see log for more info.',
+                    response.data.message,
                     'error'
                 ).then(function () {}, function (dismiss) {});
             }
