@@ -115,16 +115,17 @@
                                     required
                                     md-selected-item-change="selectedContact($index, item)"
                                     md-selected-item="contact"
-                                    md-search-text="searchContact_$index"
-                                    md-items="item in searchContacts(searchContact_$index)"
+                                    md-search-text="contactSearch"
+                                    md-items="item in searchContacts(contactSearch)"
                                     md-item-text="item.firstName + ' ' + item.lastName"
                                     md-min-length=3
-                                    placeholder="start typing a contact name...">
+                                    placeholder="start typing a contact name..."
+                                    ng-blur="contactAutoCompleteBlur(contact, this)">
                                 <md-item-template>
                                     <span><%item.firstName%> <%item.lastName%></span>
                                 </md-item-template>
                                 <md-not-found>
-                                    No contacts matching "<%searchContact_$index%>" were found.
+                                    Contact not found. <a data-toggle="modal" data-target="#newContactModal" ng-click="createNewContact(this,  contactSearch)">Create a new one!</a>
                                 </md-not-found>
                             </md-autocomplete>
                     </div>
@@ -150,17 +151,19 @@
                     <md-autocomplete
                             ng-disabled="readOnly"
                             required
+                            md-no-cache="true"
                             md-selected-item="account.primary_sales_rep"
-                            md-search-text="searchRep1"
-                            md-items="rep in searchSalesReps(searchRep1)"
+                            md-search-text="salesRep1Search"
+                            md-items="rep in searchSalesReps(salesRep1Search)"
                             md-item-text="rep.name"
                             md-min-length=3
-                            placeholder="start typing rep name...">
+                            placeholder="start typing rep name..."
+                            ng-blur="salesRep1AutoCompleteBlur(account.primary_sales_rep, this)">
                         <md-item-template>
                             <span><%rep.name%></span>
                         </md-item-template>
                         <md-not-found>
-                            No sales reps matching "<%searchRep1%>" were found.
+                            No sales reps matching "<%salesRep1Search%>" were found.
                         </md-not-found>
                     </md-autocomplete>
                 </div>
@@ -169,17 +172,19 @@
                     <md-autocomplete
                             ng-disabled="readOnly"
                             required
+                            md-no-cache="true"
                             md-selected-item="account.secondary_sales_rep"
-                            md-search-text="searchRep2"
-                            md-items="rep in searchSalesReps(searchRep2)"
+                            md-search-text="salesRep2Search"
+                            md-items="rep in searchSalesReps(salesRep2Search)"
                             md-item-text="rep.name"
                             md-min-length=3
-                            placeholder="start typing rep name...">
+                            placeholder="start typing rep name..."
+                            ng-blur="salesRep2AutoCompleteBlur(account.secondary_sales_rep, this)">
                         <md-item-template>
                             <span><%rep.name%></span>
                         </md-item-template>
                         <md-not-found>
-                            No sales reps matching "<%searchRep2%>" were found.
+                            No sales reps matching "<%salesRep2Search%>" were found.
                         </md-not-found>
                     </md-autocomplete>
                 </div>
@@ -193,5 +198,44 @@
             <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
             <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-default">Back</a>
         </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="newContactModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New Contact</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label>First Name</label>
+                        <input type="text" ng-model="newContact.firstName" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Last Name</label>
+                        <input type="text" ng-model="newContact.lastName" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label>Email</label>
+                        <input type="text" ng-model="newContact.email" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Main Phone</label>
+                        <input type="text" ng-model="newContact.mainPhone" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="saveContact()" >Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
 </div>

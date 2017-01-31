@@ -114,7 +114,6 @@ class AccountController extends Controller
     {
         try{
             $data = json_decode($request->input()['data'], true);
-            $count = 0;
             if(isset($data['id'])){
                 $account = Account::find($data['id']);
                 $count = Account::where('name','=',$data['name'])->where('id','<>',$data['id'])->count();
@@ -133,14 +132,24 @@ class AccountController extends Controller
             foreach($account->contacts as $contact){
                 $contact->account_id = null;
                 $contact->isPrimary = false;
+                $contact->isSecondary = false;
                 $contact->save();
             }
             foreach($data['contacts'] as $key => $contact){
-                $dbContact = Contact::find($contact['id']);
+                if(isset($contact['id'])){
+                    $dbContact = Contact::find($contact['id']);
+                }else{
+                    $dbContact = new Contact();
+                    $dbContact->fill($contact);
+                    $dbContact->jobTitle = "";
+                }
+
                 if($key == 0){
                     $dbContact->isPrimary = true;
+                    $dbContact->isSecondary = false;
                 }else{
                     $dbContact->isPrimary = false;
+                    $dbContact->isSecondary = true;
                 }
                 $dbContact->account_id = $account->id;
                 $dbContact->save();
@@ -228,8 +237,10 @@ class AccountController extends Controller
             ->get();
         return response()->json($users);
     }
-    public function searchContacts($query){
+    public function searchContacts($query, $account_id){
+
         $contacts = Contact::where(DB::raw("CONCAT(firstName, ' ', lastName)"),'LIKE', '%'.strtolower($query).'%')
+                            ->where('account_id','=', $account_id)
                             ->get();
         return response()->json($contacts);
     }
