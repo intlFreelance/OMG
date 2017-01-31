@@ -19,7 +19,8 @@ class Contact extends Model
     public function account(){
         return $this->belongsTo('App\Account', 'account_id');
     }
-    public function getFullName(){
+    public function getFullNameAttribute(){
         return $this->firstName ." ". $this->lastName;
     }
+
 }

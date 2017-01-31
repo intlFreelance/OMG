@@ -114,14 +114,14 @@
                                     ng-disabled="readOnly"
                                     required
                                     md-selected-item-change="selectedContact($index, item)"
-                                    md-selected-item="contact.name"
+                                    md-selected-item="contact"
                                     md-search-text="searchContact_$index"
                                     md-items="item in searchContacts(searchContact_$index)"
-                                    md-item-text="item.name"
+                                    md-item-text="item.firstName + ' ' + item.lastName"
                                     md-min-length=3
                                     placeholder="start typing a contact name...">
                                 <md-item-template>
-                                    <span><%item.name%></span>
+                                    <span><%item.firstName%> <%item.lastName%></span>
                                 </md-item-template>
                                 <md-not-found>
                                     No contacts matching "<%searchContact_$index%>" were found.

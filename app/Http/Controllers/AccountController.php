@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\AccountShippingAddress;
 use App\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Account;
 use App\User;
 use Session;
 use Exception;
+
 
 use HTML;
 use Form;
@@ -220,7 +222,7 @@ class AccountController extends Controller
         return response()->json($users);
     }
     public function searchContacts($query){
-        $contacts = Contact::where('name','LIKE', '%'.strtolower($query).'%')
+        $contacts = Contact::where(DB::raw("CONCAT(firstName, ' ', lastName)"),'LIKE', '%'.strtolower($query).'%')
                             ->get();
         return response()->json($contacts);
     }
