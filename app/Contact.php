@@ -12,11 +12,14 @@ class Contact extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phoneNumber',
+        'firstName','lastName', 'account_id', 'jobTitle', 'email', 'mainPhone', 'cellPhone', 'workPhone'
     ];
-    protected $casts = ['isPrimary'=>'boolean'];
+    protected $casts = ['isPrimary'=>'boolean', 'isSecondary'=>'boolean'];
 
     public function account(){
         return $this->belongsTo('App\Account', 'account_id');
+    }
+    public function getFullName(){
+        return $this->firstName ." ". $this->lastName;
     }
 }
