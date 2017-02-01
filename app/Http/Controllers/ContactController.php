@@ -65,8 +65,10 @@ class ContactController extends Controller
                     ->setName('email')
                     ->setSortable(true)
                     ->setCallback(function ($val) {
-                            $icon = '<span class="glyphicon glyphicon-envelope"></span>&nbsp;';
-                            return $icon . HTML::link("mailto:$val", $val);
+                        $icon = '<span class="glyphicon glyphicon-envelope"></span>';
+                        $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['class'=>'email-icon']));
+                        return
+                            $icon." ".HTML::link("mailto:$val", $val, ['class'=>'email-link']);
                         })
                     ->addFilter(
                         (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
