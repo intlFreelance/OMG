@@ -125,7 +125,7 @@
                                     <span><%item.firstName%> <%item.lastName%></span>
                                 </md-item-template>
                                 <md-not-found>
-                                    Contact not found. <a data-toggle="modal" data-target="#newContactModal" ng-click="createNewContact(this,  contactSearch)">Create a new one!</a>
+                                    Contact not found. <a data-toggle="modal" data-target="#newContactModal" ng-click="createNewContact(this,  contactSearch)">Create a new one</a>
                                 </md-not-found>
                             </md-autocomplete>
                     </div>
