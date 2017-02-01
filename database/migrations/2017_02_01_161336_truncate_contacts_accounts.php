@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-class TruncateContactsAndAccounts extends Migration
+class TruncateContactsAccounts extends Migration
 {
     /**
      * Run the migrations.
