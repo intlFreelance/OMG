@@ -14,8 +14,9 @@ class TruncateContactsAccounts extends Migration
      */
     public function up()
     {
-        DB::table('contacts')->truncate();
+        DB::statement("SET foreign_key_checks = 0");
         DB::table('accounts')->truncate();
+        DB::table('contacts')->truncate();
     }
 
     /**
