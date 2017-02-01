@@ -48,7 +48,15 @@ class ContactController extends Controller
                     ->setSortable(true)
                     ->setSorting(Grid::SORT_ASC),
                 (new FieldConfig)
-                    ->setName('name')
+                    ->setName('firstName')
+                    ->setLabel('First Name')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
+                    ),
+                (new FieldConfig)
+                    ->setName('lastName')
+                    ->setLabel('Last Name')
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
@@ -63,6 +71,20 @@ class ContactController extends Controller
                     ->addFilter(
                         (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
                     ),
+                (new FieldConfig)
+                    ->setName('mainPhone')
+                    ->setLabel('Main Phone')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
+                    ),
+                (new FieldConfig)
+                    ->setName('account_id')
+                    ->setLabel('Customer Account')
+                    ->setCallback(function ($val, $row) {
+                        $contact = $row->getSrc();
+                        return $contact->account->name;
+                    }),
                 (new FieldConfig)
                     ->setName('actions')
                     ->setLabel('Actions')
@@ -120,9 +142,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'account_id' => 'required',
             'email' => 'required|email|max:255',
-            'phoneNumber' => 'required|max:255',
+            'mainPhone' => 'required|max:255',
         ]);
         $input = $request->all();
         $contact = Contact::create($input);
@@ -164,9 +188,11 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
          $this->validate($request, [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'account_id' => 'required',
             'email' => 'required|email|max:255',
-            'phoneNumber' => 'required|max:255',
+            'mainPhone' => 'required|max:255',
         ]);
         $input = $request->all();
         $contact = Contact::find($id);

@@ -15,7 +15,7 @@ class ChangeContactsTableAddAccountIdAndIsPrimaryFields extends Migration
     {
         Schema::table('contacts', function(Blueprint $table){
             $table->integer('account_id')->unsigned()->nullable();
-            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('set null');;
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('set null');
             $table->tinyInteger('isPrimary')->default(0);
         });
     }
