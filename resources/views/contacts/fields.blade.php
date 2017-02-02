@@ -28,6 +28,7 @@
             {!! Form::select('account_id', App\Account::pluck('name', 'id'),
                                 isset($contact)  ? $contact->account_id : null,
                                 ['class'=>'form-control', 'placeholder'=>'', 'required'=>'required']) !!}
+            <a href="{{ url('accounts/create') }}">+ Add New Account</a>
             @if ($errors->has('account_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('account_id') }}</strong>

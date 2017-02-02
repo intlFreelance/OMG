@@ -8,3 +8,29 @@
 .remove-icon:hover{
      color: #c50505;
  }
+.column-actions{
+  width: 170px;
+}
+.show-mobile{
+  display: none;
+}
+.no-show-mobile{
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .email-link{
+    display: none;
+  }
+  .email-icon{
+    font-size: x-large;
+  }
+  .column-email{
+    text-align: center;
+  }
+  .show-mobile{
+    display: inline-block;
+  }
+  .no-show-mobile{
+    display: none;
+  }
+}

@@ -130,7 +130,6 @@ class AccountController extends Controller
             $account->secondarySalesRep_id = $data["secondary_sales_rep"]["id"];
             $account->save();
             foreach($account->contacts as $contact){
-                $contact->account_id = null;
                 $contact->isPrimary = false;
                 $contact->isSecondary = false;
                 $contact->save();
@@ -142,8 +141,8 @@ class AccountController extends Controller
                     $dbContact = new Contact();
                     $dbContact->fill($contact);
                     $dbContact->jobTitle = "";
+                    $dbContact->account_id = $account->id;
                 }
-
                 if($key == 0){
                     $dbContact->isPrimary = true;
                     $dbContact->isSecondary = false;
@@ -151,7 +150,6 @@ class AccountController extends Controller
                     $dbContact->isPrimary = false;
                     $dbContact->isSecondary = true;
                 }
-                $dbContact->account_id = $account->id;
                 $dbContact->save();
             }
 

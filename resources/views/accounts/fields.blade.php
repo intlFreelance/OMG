@@ -13,9 +13,11 @@
                     <input type="text" name="taxID" ng-model="account.taxID" ng-disabled="readOnly" class="form-control" required placeholder="ex: 12-3456789"/>
                 </div>
             </div>
-            <div class="form-group col-sm-6">
-                <label for="dba">DBA</label>
-                <textarea name="dba" ng-model="account.dba" class="form-control" ng-disabled="readOnly" required placeholder="separate entries with a comma" style="height: 120px;"></textarea>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="dba">DBA</label>
+                    <textarea name="dba" ng-model="account.dba" class="form-control" ng-disabled="readOnly" required placeholder="separate entries with a comma" style="height: 120px;"></textarea>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -48,8 +50,16 @@
             <div class="col-sm-12">
                 <div class="col-sm-12">
                     <label for="shippingAddress">Ship to Address</label>&nbsp;&nbsp;
-                    <input type="checkbox" name="shippingAddressSameAsBilling" ng-disabled="readOnly" ng-model="account.shippingAddressSameAsBilling" ng-click="toggleShippingAddressSameAsBilling()" />
+                    <div class="no-show-mobile">
+                        <input type="checkbox"  name="shippingAddressSameAsBilling" ng-disabled="readOnly" ng-model="account.shippingAddressSameAsBilling" ng-click="toggleShippingAddressSameAsBilling()" />
+                        <label for="shippingAddressSameAsBilling">Same as Bill to Address</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 show-mobile">
                     <label for="shippingAddressSameAsBilling">Same as Bill to Address</label>
+                    <select ng-model="account.shippingAddressSameAsBilling" ng-change="toggleShippingAddressSameAsBilling()" name="shippingAddressSameAsBilling"
+                            ng-options="o.v as o.n for o in [{ n: 'No', v: false }, { n: 'Yes', v: true }]">
+                    </select>
                 </div>
             </div>
         </div>
