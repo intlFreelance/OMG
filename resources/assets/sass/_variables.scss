@@ -22,9 +22,6 @@ $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #636b6f;
 
-// Navbar
-$navbar-default-bg: #fff;
-
 // Buttons
 $btn-default-color: $text-color;
 
@@ -33,6 +30,16 @@ $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
+// Navbar
+$navbar-default-bg: #47525D;
+$navbar-dropdown-default-bg: #5b6b7b;
+$navbar-hover-bg: #3c444a;
+
 // Panels
-$panel-default-heading-bg: #fff;
-$panel-default-body-bg: #fbfcfc;
+$panel-default-heading-bg: #47525D;
+$panel-default-body-bg: #f5f5f5;
+
+$navbar-default-color: #E8E8E8;
+
+//Footer
+$footer-bg: #47525D;
