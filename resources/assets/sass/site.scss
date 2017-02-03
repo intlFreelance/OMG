@@ -116,4 +116,7 @@ body {
   #contacts_grid .column-account_id{
     display:none;
   }
+  #users_grid .column-roles, #users_grid .column-email{
+    display:none;
+  }
 }

@@ -42,12 +42,8 @@ class UserController extends Controller
                     (new User)->newQuery()
                 )
             )
+            ->setName('users_grid')
             ->setColumns([
-                (new FieldConfig)
-                    ->setName('id')
-                    ->setLabel('ID')
-                    ->setSortable(true)
-                    ->setSorting(Grid::SORT_ASC),
                 (new FieldConfig)
                     ->setName('name')
                     ->setSortable(true),
@@ -77,8 +73,9 @@ class UserController extends Controller
                     ->setCallback(function($val, $row){
                         $user = $row->getSrc();
                         $buttons = 
-                            "<div class='btn-group'>".
-                            "<a href='".route('users.show', [$user->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                            "<div class='btn-group'>
+                            <a href='mailto:".$user->email."' class='show-mobile btn btn-default btn-xs'><i class='glyphicon glyphicon-envelope'></i></a>
+                            <a href='".route('users.show', [$user->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                             <a href='". route('users.edit', [$user->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
                             <a href='". route('users.destroy', [$user->id]) ."' data-delete=''  class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                             ";
