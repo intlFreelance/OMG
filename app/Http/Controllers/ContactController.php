@@ -41,6 +41,7 @@ class ContactController extends Controller
                     (new Contact)->newQuery()
                 )
             )
+            ->setName('contacts_grid')
             ->setColumns([
                 (new FieldConfig)
                     ->setName('id')
@@ -66,17 +67,9 @@ class ContactController extends Controller
                     ->setSortable(true)
                     ->setCallback(function ($val) {
                         $icon = '<span class="glyphicon glyphicon-envelope"></span>';
-                        $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['class'=>'email-icon']));
-                        return
-                            $icon." ".HTML::link("mailto:$val", $val, ['class'=>'email-link']);
+                        $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['style'=>'font-size: x-large']));
+                        return $icon;
                         })
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
-                (new FieldConfig)
-                    ->setName('mainPhone')
-                    ->setLabel('Main Phone')
-                    ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
                     ),

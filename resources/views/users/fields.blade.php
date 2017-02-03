@@ -69,9 +69,12 @@
     
 </div>
 <div class="panel-footer">
-        <!-- Submit Field -->
-    <div class="form-group">
-        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-        <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group pull-right">
+                <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+            </div>
+        </div>
     </div>
 </div>

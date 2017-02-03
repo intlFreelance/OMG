@@ -1,6 +1,74 @@
-.gray-bg{
-    background-color: $panel-default-body-bg;
+html,
+body {
+  height: 100%;
 }
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+#push,
+#footer {
+  height: 60px;
+}
+#footer {
+  background-color: $navbar-default-bg;
+  color: $navbar-default-color;
+}
+#footer a, #footer a:hover  {
+  color: $navbar-default-color;
+  text-decoration: none;
+
+}
+
+#app{
+  min-height: 100%;
+}
+.navbar-default{
+  background-color: $navbar-default-bg;
+}
+.navbar-brand{
+  color: $navbar-default-color !important;
+}
+.navbar-default .navbar-nav>li>a{
+  color: $navbar-default-color !important;
+}
+.navbar-default .navbar-nav>.dropdown>a .caret {
+   border-top-color: $navbar-default-color !important;
+   border-bottom-color: $navbar-default-color !important;
+ }
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  background-color: $navbar-hover-bg;
+  color: $navbar-default-color;
+}
+.dropdown-menu {
+  background-color: $navbar-dropdown-default-bg;
+}
+.dropdown-menu>li>a {
+  color: $navbar-default-color;
+}
+.dropdown-menu>li>a:hover {
+  background-color: $navbar-dropdown-default-bg;
+  color: $navbar-default-color;
+}
+.panel-default>.panel-heading{
+  background-color: $panel-default-heading-bg;
+  color: $navbar-default-color;
+}
+.panel-body{
+  background-color: $panel-default-body-bg;
+}
+.panel-heading h1, .panel-heading h2, .panel-heading h3, .panel-heading h4, .panel-heading h5, .panel-heading h6{
+  color: $navbar-default-color;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px;
+}
+
+
 .remove-icon{
     color: darkred;
     font-size: large;
@@ -17,6 +85,7 @@
 .no-show-mobile{
   display: inline-block;
 }
+
 @media (max-width: 768px) {
   .email-link{
     display: none;
@@ -24,7 +93,7 @@
   .email-icon{
     font-size: x-large;
   }
-  .column-email{
+  #contacts_grid .column-email{
     text-align: center;
   }
   .show-mobile{
@@ -32,5 +101,11 @@
   }
   .no-show-mobile{
     display: none;
+  }
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

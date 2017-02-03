@@ -203,10 +203,14 @@
     </div>
     <div class="panel-footer">
             <!-- Submit Field -->
-        <div class="form-group">
-            <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-primary" value="Save"/>
-            <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
-            <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-default">Back</a>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group pull-right">
+                    <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-lg btn-default">Cancel</a>
+                    <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-lg btn-default">Back</a>
+                    <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-lg btn-primary" value="Save"/>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -242,8 +246,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="saveContact()" >Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="saveContact()" >Save</button>
             </div>
         </div>
 
