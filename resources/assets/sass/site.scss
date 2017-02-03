@@ -64,10 +64,12 @@ body {
 }
 .page-wrap {
   min-height: 100%;
-  /* equal to footer height */
   margin-bottom: -142px;
 }
-
+.table >thead{
+  background-color: $panel-default-heading-bg;
+  color: $navbar-default-color;
+}
 
 .remove-icon{
     color: darkred;
@@ -77,7 +79,7 @@ body {
      color: #c50505;
  }
 .column-actions{
-  width: 170px;
+  width: 220px;
 }
 .show-mobile{
   display: none;
@@ -107,5 +109,11 @@ body {
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: $navbar-default-color;
+  }
+  #contacts_grid .column-account_id{
+    display:none;
   }
 }

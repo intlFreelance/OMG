@@ -50,10 +50,7 @@ class UserController extends Controller
                     ->setSorting(Grid::SORT_ASC),
                 (new FieldConfig)
                     ->setName('name')
-                    ->setSortable(true)
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                    ->setSortable(true),
                 (new FieldConfig)
                     ->setName('email')
                     ->setSortable(true)
@@ -62,10 +59,7 @@ class UserController extends Controller
                         $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['class'=>'email-icon']));
                             return
                                 $icon." ".HTML::link("mailto:$val", $val, ['class'=>'email-link']);
-                        })
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                        }),
                 (new FieldConfig)
                     ->setName('roles')
                     ->setLabel('Roles')
