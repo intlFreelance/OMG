@@ -47,17 +47,14 @@ class AccountController extends Controller
                 new EloquentDataProvider((new Account())->newQuery())
             )
             ->setColumns([
-                (new FieldConfig)
+                /*(new FieldConfig)
                     ->setName('id')
                     ->setLabel('ID')
                     ->setSortable(true)
-                    ->setSorting(Grid::SORT_ASC),
+                    ->setSorting(Grid::SORT_ASC),*/
                 (new FieldConfig)
                     ->setName('name')
-                    ->setSortable(true)
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                    ->setSortable(true),
                 (new FieldConfig)
                     ->setName('actions')
                     ->setLabel('Actions')

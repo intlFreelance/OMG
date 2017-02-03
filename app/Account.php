@@ -9,7 +9,8 @@ class Account extends Model
     protected $fillable = ['name', 'dba', 'taxID', 'billingAddress', 'shippingAddressSameAsBilling', 'phone1', 'phone2', 'fax', 'website', 'notes'];
     protected $casts = [
         'billingAddress' => 'array',
-        'shippingAddressSameAsBilling'=>'boolean'
+        'shippingAddressSameAsBilling'=>'boolean',
+        //'taxID' => 'array'
     ];
     public function primarySalesRep()
     {

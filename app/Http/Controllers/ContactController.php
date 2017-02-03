@@ -43,39 +43,21 @@ class ContactController extends Controller
             )
             ->setName('contacts_grid')
             ->setColumns([
-                (new FieldConfig)
+                /*(new FieldConfig)
                     ->setName('id')
                     ->setLabel('ID')
                     ->setSortable(true)
-                    ->setSorting(Grid::SORT_ASC),
+                    ->setSorting(Grid::SORT_ASC),*/
                 (new FieldConfig)
                     ->setName('firstName')
-                    ->setLabel('First Name')
-                    ->setSortable(true)
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
-                (new FieldConfig)
-                    ->setName('lastName')
-                    ->setLabel('Last Name')
-                    ->setSortable(true)
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
-                (new FieldConfig)
-                    ->setName('email')
-                    ->setSortable(true)
-                    ->setCallback(function ($val) {
-                        $icon = '<span class="glyphicon glyphicon-envelope"></span>';
-                        $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['style'=>'font-size: x-large']));
-                        return $icon;
-                        })
-                    ->addFilter(
-                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                    ->setLabel('Name')
+                    ->setCallback(function ($val, $row) {
+                        $contact = $row->getSrc();
+                        return $contact->fullName;
+                    }),
                 (new FieldConfig)
                     ->setName('account_id')
-                    ->setLabel('Customer Account')
+                    ->setLabel('Account')
                     ->setCallback(function ($val, $row) {
                         $contact = $row->getSrc();
                         return $contact->account->name;
@@ -85,8 +67,10 @@ class ContactController extends Controller
                     ->setLabel('Actions')
                     ->setCallback(function($val, $row){
                         $contact = $row->getSrc();
+
                         $buttons = 
                             "<div class='btn-group'>
+                                <a href='mailto:".$contact->email."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-envelope'></i></a>
                                 <a href='".route('contacts.show', [$contact->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                 <a href='". route('contacts.edit', [$contact->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
                                 <a href='". route('contacts.destroy', [$contact->id]) ."' data-delete=''  class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
