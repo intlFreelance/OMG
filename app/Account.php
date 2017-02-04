@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $fillable = ['name', 'dba', 'taxID', 'billingAddress', 'shippingAddressSameAsBilling', 'phone1', 'phone2', 'fax', 'website', 'notes'];
+    protected $fillable = ['name', 'dba', 'taxID', 'billingAddress', 'shippingAddressSameAsBilling', 'phone1', 'phone2', 'fax', 'email', 'website', 'notes'];
     protected $casts = [
         'billingAddress' => 'array',
         'shippingAddressSameAsBilling'=>'boolean',
-        //'taxID' => 'array'
+        'taxID' => 'array'
     ];
     public function primarySalesRep()
     {

@@ -110,7 +110,7 @@ class AccountController extends Controller
     public function save(Request $request)
     {
         try{
-            $data = json_decode($request->input()['data'], true);
+            $data = $request->input()['data'];
             if(isset($data['id'])){
                 $account = Account::find($data['id']);
                 $count = Account::where('name','=',$data['name'])->where('id','<>',$data['id'])->count();

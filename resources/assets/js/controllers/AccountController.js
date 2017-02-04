@@ -20,6 +20,9 @@ app.controller('AccountController', function($scope, $http, $log) {
     $scope.salesRep1AutoCompleteBlur = salesRep1AutoCompleteBlur;
     $scope.salesRep2AutoCompleteBlur = salesRep2AutoCompleteBlur;
     $scope.saveContact = saveContact;
+    $scope.account.taxID = [];
+    $scope.addTaxID = addTaxID;
+    $scope.removeTaxID = removeTaxID;
 
     function searchSalesReps(query){
         return $http
@@ -51,11 +54,21 @@ app.controller('AccountController', function($scope, $http, $log) {
     function removeShippingAddress(index){
         $scope.account.shipping_addresses.splice(index, 1);
     }
+    function addTaxID(){
+        $scope.account.taxID.push({});
+    }
+    function removeTaxID(index){
+        $scope.account.taxID.splice(index, 1);
+    }
     function loadModel(id, readOnly){
+        $('#newContactModal').on('shown.bs.modal', function () {
+            $('#contact-firstName').focus();
+        })
         $scope.readOnly = readOnly;
         if(id==null){
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
+            $scope.account.taxID.push({});
             return;
         }
         $http.get('/accounts/get-by-id/'+id)
@@ -65,10 +78,17 @@ app.controller('AccountController', function($scope, $http, $log) {
             });
     }
     function submitForm(form){
-        if(!form.$valid) return;
+        if(!form.$valid){
+            swal(
+                'Oops...',
+                'Please complete all required fields.',
+                'error'
+            ).then(function () {}, function (dismiss) {});
+            return;
+        }
         $http.post('/accounts/save', {
-            data : JSON.stringify($scope.account)
-        }).then(function(response){
+            data : $scope.account
+        }, {withCredentials: true}).then(function(response){
             if(response.data.success){
                 window.location.href = '/accounts';
             }else{
@@ -79,6 +99,13 @@ app.controller('AccountController', function($scope, $http, $log) {
                     'error'
                 ).then(function () {}, function (dismiss) {});
             }
+        }, function(err){
+            $log.error(err);
+            swal(
+                'Oops...',
+                'There was an error, check log for details.',
+                'error'
+            ).then(function () {}, function (dismiss) {});
         });
     }
     function toggleShippingAddressSameAsBilling(){
@@ -122,7 +149,7 @@ app.controller('AccountController', function($scope, $http, $log) {
         }
     }
     function saveContact(){
-        if($scope.newContact.firstName == "" || $scope.newContact.lastName == "" || $scope.newContact.email == "" || $scope.newContact.mainPhone == ""){
+        if(isNullOrEmpty($scope.newContact.firstName) || isNullOrEmpty($scope.newContact.lastName) || isNullOrEmpty($scope.newContact.email ) || isNullOrEmpty($scope.newContact.mainPhone)){
             swal(
                 'Oops...',
                 'Please complete all contact fields.',
@@ -135,4 +162,7 @@ app.controller('AccountController', function($scope, $http, $log) {
         $("#newContactModal").modal("toggle");
     }
     $scope.states = ["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+    function isNullOrEmpty(val){
+        return !val || val == "";
+    }
 });

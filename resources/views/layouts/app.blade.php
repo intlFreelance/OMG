@@ -94,8 +94,7 @@
                 </div>
             </footer>
         @endif
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+        <!-- Scripts -->
+        <script src="/js/app.js"></script>
 </body>
 </html>

@@ -3,18 +3,34 @@
     <div class="panel-heading">Basic Account Info</div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="form-group col-sm-12">
-                    <label for="name">Account Name</label>
+                    <label for="name">Account Name</label> <a title="Remove taxID" class="remove-icon pull-right" href="javascript:void(0)" ng-show="!readOnly && $index > 0" ng-click="removeTaxID($index)"><span class="glyphicon glyphicon-remove"></span></a>
                     <input type="text" name="name" ng-model="account.name" ng-disabled="readOnly" class="form-control" required placeholder="enter a name..."/>
                 </div>
-                <div class="form-group col-sm-12">
+                <div class="col-sm-12">
                     <label for="taxID">Tax ID</label>
-                    <input type="text" name="taxID" ng-model="account.taxID" ng-disabled="readOnly" class="form-control" required placeholder="ex: 12-3456789"/>
+                </div>
+                <div class="row" ng-repeat="taxID in account.taxID">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <label ng-show="$index > 0">Tax ID <% $index + 1 %></label>
+                            <a title="Remove Tax ID" class="remove-icon pull-right" href="javascript:void(0)" ng-show="!readOnly && $index > 0" ng-click="removeTaxID($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="taxID[taxID]" ng-model="taxID.taxID" ng-disabled="readOnly" class="form-control" required placeholder="ex: 12-3456789"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <select ng-model="taxID.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <a href="javascript:void(0)" ng-click="addTaxID()" ng-show="!readOnly">+ Add another Tax ID</a>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group col-sm-6">
+            <div class="col-sm-6">
+                <div class="form-group col-sm-12">
                     <label for="dba">DBA</label>
                     <textarea name="dba" ng-model="account.dba" class="form-control" ng-disabled="readOnly" required placeholder="separate entries with a comma" style="height: 120px;"></textarea>
                 </div>
@@ -37,9 +53,7 @@
                     <input type="text" ng-model="account.billingAddress.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                 </div>
                 <div class="col-sm-3 form-group">
-                    <select ng-model="account.billingAddress.state" ng-disabled="readOnly" class="form-control" required placeholder="state">
-                        <option ng-repeat="state in states"><%state%></option>
-                    </select>
+                    <select ng-model="account.billingAddress.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
                 </div>
                 <div class="col-sm-3 form-group">
                     <input type="text" ng-model="account.billingAddress.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
@@ -79,9 +93,7 @@
                     <input type="text" ng-model="shippingAddress.address.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                 </div>
                 <div class="col-sm-3 form-group">
-                    <select ng-model="shippingAddress.address.state" ng-disabled="readOnly" class="form-control" required placeholder="state">
-                        <option ng-repeat="state in states"><%state%></option>
-                    </select>
+                    <select ng-model="shippingAddress.address.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
                 </div>
                 <div class="col-sm-3 form-group">
                     <input type="text" ng-model="shippingAddress.address.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
@@ -112,11 +124,15 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="col-sm-6 form-group">
+                <div class="col-sm-4 form-group">
+                    <label for="email">Email</label>
+                    <input type="email" ng-model="account.email" ng-disabled="readOnly" class="form-control" placeholder="enter email..."/>
+                </div>
+                <div class="col-sm-4 form-group">
                     <label for="website">Web Site</label>
                     <input type="text" ng-model="account.website" ng-disabled="readOnly" class="form-control" placeholder="enter website..."/>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label for="contacts">Primary Contact</label>
                     <div class="form-group" ng-repeat="contact in account.contacts">
                             <label ng-show="$index > 0">Contact <% $index + 1 %></label><a title="Remove contact" class="remove-icon pull-right" href="javascript:void(0)" ng-show="!readOnly && $index > 0" ng-click="removeContact($index)"><span class="glyphicon glyphicon-remove"></span></a>
@@ -199,6 +215,16 @@
                     </md-autocomplete>
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <label for="classification">Classification</label>
+                    <input type="text" ng-model="account.classification" ng-disabled="readOnly" class="form-control" placeholder="Enter classification..."/>
+                </div>
+                <div class="col-sm-6">
+                    <label for="industry">Industry</label>
+                    <input type="text" ng-model="account.industry" ng-disabled="readOnly" class="form-control" placeholder="Enter Industry..."/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="panel-footer">
@@ -206,9 +232,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group pull-right">
-                    <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-lg btn-default">Cancel</a>
-                    <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-lg btn-default">Back</a>
-                    <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-lg btn-primary" value="Save"/>
+                    <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
+                    <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-default">Back</a>
+                    <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-primary" value="Save"/>
                 </div>
             </div>
         </div>
@@ -227,7 +253,7 @@
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>First Name</label>
-                        <input type="text" ng-model="newContact.firstName" class="form-control" autocomplete="off">
+                        <input id="contact-firstName" type="text" ng-model="newContact.firstName" class="form-control" autocomplete="off">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>Last Name</label>
@@ -250,6 +276,5 @@
                 <button type="button" class="btn btn-primary" ng-click="saveContact()" >Save</button>
             </div>
         </div>
-
     </div>
 </div>
