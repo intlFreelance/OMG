@@ -51,14 +51,15 @@ class UserController extends Controller
                     ->setName('email')
                     ->setSortable(true)
                     ->setCallback(function ($val) {
+                        if(empty($val)) return "";
                         $icon = '<span class="glyphicon glyphicon-envelope"></span>';
-                        $icon = HTML::decode(HTML::link("mailto:$val", $icon, ['class'=>'email-icon']));
+                        $icon = HTML::decode(HTML::link("mailto:$val", $icon));
                             return
-                                $icon." ".HTML::link("mailto:$val", $val, ['class'=>'email-link']);
+                                $icon." ".HTML::link("mailto:$val", $val);
                         }),
                 (new FieldConfig)
                     ->setName('roles')
-                    ->setLabel('Roles')
+                    ->setLabel('Role')
                     ->setCallback(function($val, $row){
                         $user = $row->getSrc();
                         $str = "";
@@ -69,14 +70,14 @@ class UserController extends Controller
                     }),
                 (new FieldConfig)
                     ->setName('actions')
-                    ->setLabel('Actions')
+                    ->setLabel(' ')
                     ->setCallback(function($val, $row){
                         $user = $row->getSrc();
                         $buttons = 
                             "<div class='btn-group'>
                             <a href='mailto:".$user->email."' class='show-mobile btn btn-default btn-xs'><i class='glyphicon glyphicon-envelope'></i></a>
-                            <a href='".route('users.show', [$user->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                            <a href='". route('users.edit', [$user->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
+                            <a href='".route('users.show', [$user->id])."' class='btn btn-primary btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                            <a href='". route('users.edit', [$user->id])."' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
                             <a href='". route('users.destroy', [$user->id]) ."' data-delete=''  class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                             ";
                         $buttons .= "</div>";

@@ -2,8 +2,13 @@
 
 @section('content')
   <div class="container">
-        <h1 class="pull-left">Contacts</h1>
-        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('contacts.create') !!}">Add New</a>
-        <?= $grid ?>
+      <div class="row">
+          <div class="col-sm-12">
+              <h1 class="pull-left">View Contacts</h1>
+              <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('contacts.create') !!}">+ Add Contact</a>
+          </div>
+      </div>
+      <hr/>
+      <?= $grid ?>
   </div>
 @endsection

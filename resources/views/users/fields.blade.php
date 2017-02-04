@@ -1,3 +1,5 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title">&nbsp;</div></div>
 <div class="panel-body">
     <div class="row">
         <!-- First Name Field -->
@@ -66,15 +68,13 @@
         </div>
         <div class="form-group col-sm-6"></div>
     </div>
-    
 </div>
-<div class="panel-footer">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group pull-right">
-                <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-            </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group pull-right">
+            <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
+            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
 </div>

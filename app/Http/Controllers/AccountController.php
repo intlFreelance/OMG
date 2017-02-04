@@ -46,24 +46,52 @@ class AccountController extends Controller
             ->setDataProvider(
                 new EloquentDataProvider((new Account())->newQuery())
             )
+            ->setName('accounts_grid')
             ->setColumns([
-                /*(new FieldConfig)
-                    ->setName('id')
-                    ->setLabel('ID')
-                    ->setSortable(true)
-                    ->setSorting(Grid::SORT_ASC),*/
                 (new FieldConfig)
                     ->setName('name')
                     ->setSortable(true),
                 (new FieldConfig)
+                    ->setName('contact')
+                    ->setLabel('Account Contact')
+                    ->setCallback(function($val, $row){
+                        $account = $row->getSrc();
+                        $contact = "";
+                        if(count($account->contacts) > 0){
+                            $contact = $account->contacts[0]->fullName;
+                        }
+                        return $contact;
+                    }),
+                (new FieldConfig)
+                    ->setName('primarySalesRep')
+                    ->setLabel('Primary Sales Rep')
+                    ->setCallback(function($val, $row){
+                        $account = $row->getSrc();
+                        $salesRep = "";
+                        if(isset($account->primarySalesRep_id)){
+                            $salesRep = $account->primarySalesRep->name;
+                        }
+                        return $salesRep;
+                    }),
+                (new FieldConfig)
+                    ->setName('email')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        if(empty($val)) return "";
+                        $icon = '<span class="glyphicon glyphicon-envelope"></span>';
+                        $icon = HTML::decode(HTML::link("mailto:$val", $icon));
+                        return $icon." ".HTML::link("mailto:$val", $val);
+                    }),
+                (new FieldConfig)
                     ->setName('actions')
-                    ->setLabel('Actions')
+                    ->setLabel(' ')
                     ->setCallback(function($val, $row){
                         $account = $row->getSrc();
                         $buttons =
                             "<div class='btn-group'>
-                                <a href='".route('accounts.show', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                <a href='".route('accounts.edit', [$account->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
+                                <a href='mailto:".$account->email."' class='btn btn-default btn-xs show-mobile'><i class='glyphicon glyphicon-envelope'></i></a>
+                                <a href='".route('accounts.show', [$account->id])."' class='btn btn-primary btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                <a href='".route('accounts.edit', [$account->id])."' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
                                 <a href='".route('accounts.destroy', [$account->id])."' data-delete='' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                             </div>";
                         return $buttons;
