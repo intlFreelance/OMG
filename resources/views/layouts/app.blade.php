@@ -20,6 +20,8 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
 </head>
 <body>
         <div id="wrap">
@@ -94,8 +96,5 @@
                 </div>
             </footer>
         @endif
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
 </body>
 </html>

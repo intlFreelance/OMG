@@ -253,7 +253,7 @@
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>First Name</label>
-                        <input type="text" ng-model="newContact.firstName" class="form-control" autocomplete="off">
+                        <input id="contact-firstName" type="text" ng-model="newContact.firstName" class="form-control" autocomplete="off">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>Last Name</label>
@@ -276,6 +276,5 @@
                 <button type="button" class="btn btn-primary" ng-click="saveContact()" >Save</button>
             </div>
         </div>
-
     </div>
 </div>

@@ -61,6 +61,9 @@ app.controller('AccountController', function($scope, $http, $log) {
         $scope.account.taxID.splice(index, 1);
     }
     function loadModel(id, readOnly){
+        $('#newContactModal').on('shown.bs.modal', function () {
+            $('#contact-firstName').focus();
+        })
         $scope.readOnly = readOnly;
         if(id==null){
             $scope.account.contacts.push(null);
@@ -75,10 +78,17 @@ app.controller('AccountController', function($scope, $http, $log) {
             });
     }
     function submitForm(form){
-        if(!form.$valid) return;
+        if(!form.$valid){
+            swal(
+                'Oops...',
+                'Please complete all required fields.',
+                'error'
+            ).then(function () {}, function (dismiss) {});
+            return;
+        }
         $http.post('/accounts/save', {
-            data : JSON.stringify($scope.account)
-        }).then(function(response){
+            data : $scope.account
+        }, {withCredentials: true}).then(function(response){
             if(response.data.success){
                 window.location.href = '/accounts';
             }else{
@@ -89,6 +99,13 @@ app.controller('AccountController', function($scope, $http, $log) {
                     'error'
                 ).then(function () {}, function (dismiss) {});
             }
+        }, function(err){
+            $log.error(err);
+            swal(
+                'Oops...',
+                'There was an error, check log for details.',
+                'error'
+            ).then(function () {}, function (dismiss) {});
         });
     }
     function toggleShippingAddressSameAsBilling(){
