@@ -42,7 +42,14 @@ body {
   background-color: $navbar-hover-bg;
   color: $navbar-default-color;
 }
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{
+  color: $navbar-default-color;
+}
+
 .dropdown-menu {
+  background-color: $navbar-hover-bg;
+}
+.dropdown-menu:hover {
   background-color: $navbar-dropdown-default-bg;
 }
 .dropdown-menu>li>a {
@@ -122,4 +129,11 @@ body {
 
 .form-group > dl {
   margin: 25px 25px;
+}
+.navbar .nav>li>.dropdown-menu:before, .navbar .nav>li>.dropdown-menu:after {
+  display: none !important;
+}
+.navbar-nav>li>.dropdown-menu {
+  border: 2px solid $navbar-dropdown-default-bg;
+  border-radius: 0px;
 }
