@@ -137,3 +137,14 @@ body {
   border: 2px solid $navbar-dropdown-default-bg;
   border-radius: 0px;
 }
+.panel-heading .pull-left {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.panel-heading .pull-right {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 15px;
+}
