@@ -71,8 +71,6 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register-sales-rep') }}">Register Sales Representative</a>
-                    <a href="{{ url('/register-admin') }}">Register Admin</a>
                 </div>
             @endif
 
