@@ -151,8 +151,12 @@ class AccountController extends Controller
                 throw new Exception("The account name already exists.");
             }
             $account->fill($data);
-            $account->primarySalesRep_id = $data["primary_sales_rep"]["id"];
-            $account->secondarySalesRep_id = $data["secondary_sales_rep"]["id"];
+            if(isset($data["primary_sales_rep"]["id"])){
+                $account->primarySalesRep_id = $data["primary_sales_rep"]["id"];
+            }
+            if(isset($data["secondary_sales_rep"]["id"])){
+                $account->secondarySalesRep_id = $data["secondary_sales_rep"]["id"];
+            }
             $account->save();
             foreach($account->contacts as $contact){
                 $contact->isPrimary = false;
