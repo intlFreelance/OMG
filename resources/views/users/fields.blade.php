@@ -71,10 +71,10 @@
 </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="form-group pull-right">
-            <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
-            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-        </div>
+    <div class="col-xs-6 col-sm-3 col-md-3 col-sm-push-6 col-md-push-6 ">
+        <a href="{!! route('users.index') !!}" class="btn btn-block btn-default">Cancel</a>
     </div>
-</div>
+    <div class="col-xs-6 col-sm-3 col-md-3 col-sm-push-6 col-md-push-6">
+        {!! Form::submit('Save', ['class' => 'btn btn-primary btn-block']) !!}
+    </div>
+</div><br/>

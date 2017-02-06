@@ -36,9 +36,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="form-group pull-right">
-            <a href="{!! route('users.index') !!}" class="btn btn-default">Back</a>
-        </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-sm-push-9 col-md-push-9 ">
+        <a href="{!! route('users.index') !!}" class="btn btn-block btn-default">Back</a>
     </div>
-</div>
+</div><br/>

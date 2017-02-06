@@ -22,16 +22,20 @@
                             <label ng-show="$index > 0">Tax ID <% $index + 1 %></label>
                             <a title="Remove Tax ID" class="remove-icon pull-right" href="javascript:void(0)" ng-show="!readOnly && $index > 0" ng-click="removeTaxID($index)"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-xs-6 form-group">
                             <input type="text" name="taxID[taxID]" ng-model="taxID.taxID" ng-disabled="readOnly" class="form-control" required placeholder="ex: 12-3456789"/>
                         </div>
-                        <div class="col-sm-6">
-                            <select ng-model="taxID.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
+                        <div class="col-xs-6 form-group">
+                            <select ng-model="taxID.state" ng-disabled="readOnly" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>state</option></select>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <a href="javascript:void(0)" ng-click="addTaxID()" ng-show="!readOnly">+ Add another Tax ID</a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <a href="javascript:void(0)" ng-click="addTaxID()" ng-show="!readOnly">+ Add another Tax ID</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -41,6 +45,7 @@
                 </div>
             </div>
         </div>
+        <br/><br/>
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-12">
@@ -57,29 +62,32 @@
                 <div class="col-sm-6 form-group">
                     <input type="text" ng-model="account.billingAddress.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                 </div>
-                <div class="col-sm-3 form-group">
-                    <select ng-model="account.billingAddress.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
+                <div class="col-sm-3 col-xs-6 form-group">
+                    <select ng-model="account.billingAddress.state" ng-disabled="readOnly" class="form-control" required  ng-options="s as s for s in states"><option value='' disabled>state</option></select>
                 </div>
-                <div class="col-sm-3 form-group">
+                <div class="col-sm-3 col-xs-6 form-group">
                     <input type="text" ng-model="account.billingAddress.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="col-sm-12">
-                    <label for="shippingAddress">Ship to Address</label>&nbsp;&nbsp;
-                    <div class="no-show-mobile">
-                        <input type="checkbox"  name="shippingAddressSameAsBilling" ng-disabled="readOnly" ng-model="account.shippingAddressSameAsBilling" ng-click="toggleShippingAddressSameAsBilling()" />
-                        <label for="shippingAddressSameAsBilling">Same as Bill to Address</label>
-                    </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <label for="shippingAddress">Ship to Address</label>
                 </div>
-                <div class="col-sm-12 show-mobile">
+                <div class="col-md-4 col-md-pull-2 col-sm-pull-1 col-sm-4 col-xs-6 text-right">
+                    <label style="font-weight: normal">
+                        <input type="checkbox"  name="shippingAddressSameAsBilling" ng-disabled="readOnly" ng-model="account.shippingAddressSameAsBilling" ng-click="toggleShippingAddressSameAsBilling()" />
+                        Same as Bill to Address
+                    </label>
+                </div>
+
+                <!--div class="col-sm-12 show-mobile">
                     <label for="shippingAddressSameAsBilling">Same as Bill to Address</label>
                     <select ng-model="account.shippingAddressSameAsBilling" ng-change="toggleShippingAddressSameAsBilling()" name="shippingAddressSameAsBilling"
                             ng-options="o.v as o.n for o in [{ n: 'No', v: false }, { n: 'Yes', v: true }]">
                     </select>
-                </div>
+                </div-->
             </div>
         </div>
         <div class="row"  ng-repeat="shippingAddress in account.shipping_addresses">
@@ -97,13 +105,12 @@
                 <div class="col-sm-6 form-group">
                     <input type="text" ng-model="shippingAddress.address.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                 </div>
-                <div class="col-sm-3 form-group">
-                    <select ng-model="shippingAddress.address.state" ng-disabled="readOnly" class="form-control" required placeholder="state" ng-options="s as s for s in states"></select>
+                <div class="col-sm-3 col-xs-6 form-group">
+                    <select ng-model="shippingAddress.address.state" ng-disabled="readOnly" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>state</option></select>
                 </div>
-                <div class="col-sm-3 form-group">
+                <div class="col-sm-3 col-xs-6 form-group">
                     <input type="text" ng-model="shippingAddress.address.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
                 </div>
-
             </div>
         </div>
         <div class="row">
@@ -111,6 +118,7 @@
                 <div class="col-sm-12"><a href="javascript:void(0)" ng-click="addShippingAddress()" ng-show="!readOnly && !account.shippingAddressSameAsBilling">+ Add another shipping address</a></div>
             </div>
         </div>
+        <br ng-if="!account.shippingAddressSameAsBilling"/><br ng-if="!account.shippingAddressSameAsBilling"/>
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-4 form-group">
@@ -164,6 +172,7 @@
                 </div>
             </div>
         </div>
+        <br/>
         <div class="row">
             <div class="col-sm-12 form-group ">
                 <div class="col-sm-12 form-group">
@@ -231,24 +240,29 @@
             <div class="col-sm-12">
                 <div class="col-sm-6">
                     <label for="classification">Classification</label>
-                    <input type="text" ng-model="account.classification" ng-disabled="readOnly" class="form-control" placeholder="Enter classification..."/>
+                    <select ng-model="account.classification" ng-disabled="readOnly" class="form-control" >
+                        <option ng-repeat="n in [1,2,3,4,5]">Item <% n %></option>
+                    </select>
                 </div>
                 <div class="col-sm-6">
                     <label for="industry">Industry</label>
-                    <input type="text" ng-model="account.industry" ng-disabled="readOnly" class="form-control" placeholder="Enter Industry..."/>
+                    <select ng-model="account.industry" ng-disabled="readOnly" class="form-control" >
+                        <option ng-repeat="n in [1,2,3,4,5]">Item <% n %></option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="form-group pull-right">
-            <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
-            <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-primary" value="Save"/>
-        </div>
+    <div class="col-xs-6 col-sm-3 col-md-3 col-sm-push-6 col-md-push-6 ">
+        <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-block btn-default">Cancel</a>
     </div>
-</div>
+    <div class="col-xs-6 col-sm-3 col-md-3 col-sm-push-6 col-md-push-6">
+        <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-block btn-primary" value="Save"/>
+    </div>
+</div><br/>
+
 <!-- Modal -->
 <div id="newContactModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
