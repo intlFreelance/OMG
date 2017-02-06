@@ -64,8 +64,7 @@ class UserController extends Controller
                         $user = $row->getSrc();
                         $str = "";
                         foreach($user->roles as $role)
-                            $str .= "<li>$role->display_name</li>";
-                        $str = "<ul>$str</ul>";
+                            $str .= $role->display_name;
                         return $str;
                     }),
                 (new FieldConfig)

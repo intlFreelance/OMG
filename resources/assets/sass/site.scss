@@ -98,6 +98,10 @@ body {
   text-align: right;
 }
 @media (max-width: 768px) {
+  .form-header {
+   font-size: 22px;
+   margin-top: 30px; 
+  }
   #contacts_grid .column-email{
     text-align: center;
   }

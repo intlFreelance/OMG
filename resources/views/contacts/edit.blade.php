@@ -5,7 +5,7 @@
         <div class="col-md-10 col-md-offset-1">
             <a href="{!! route('contacts.index') !!}">< View All Contacts</a>
             <br/>
-            <h2>Edit Contact</h2>
+            <h2 class="form-header">Edit Contact</h2>
             <hr/>
             {!! Form::model($contact, ['route' => ['contacts.update', $contact->id], 'method' => 'patch']) !!}
                 @include('contacts.fields')
