@@ -23,6 +23,7 @@ app.controller('AccountController', function($scope, $http, $log) {
     $scope.account.taxID = [];
     $scope.addTaxID = addTaxID;
     $scope.removeTaxID = removeTaxID;
+    $scope.toggleForm = toggleForm;
 
     function searchSalesReps(query){
         return $http
@@ -65,6 +66,13 @@ app.controller('AccountController', function($scope, $http, $log) {
             $('#contact-firstName').focus();
         })
         $scope.readOnly = readOnly;
+        var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if(width > 768){
+            $scope.longForm = true;
+
+        }else{
+            $scope.longForm = false;
+        }
         if(id==null){
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
@@ -78,6 +86,8 @@ app.controller('AccountController', function($scope, $http, $log) {
             });
     }
     function submitForm(form){
+        $log.info(form);
+        $log.info($scope.account);
         if(!form.$valid){
             swal(
                 'Oops...',
@@ -113,7 +123,7 @@ app.controller('AccountController', function($scope, $http, $log) {
             $scope.account.shipping_addresses = [];
         }else{
             if($scope.account.shipping_addresses.length == 0)
-                $scope.account.shipping_addresses.push({});
+                $scope.account.shipping_addresses.push({address:""});
         }
     }
     function selectedContact(index, contact){
@@ -164,5 +174,8 @@ app.controller('AccountController', function($scope, $http, $log) {
     $scope.states = ["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
     function isNullOrEmpty(val){
         return !val || val == "";
+    }
+    function toggleForm(){
+        $scope.longForm = !$scope.longForm;
     }
 });
