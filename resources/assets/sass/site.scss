@@ -87,14 +87,10 @@ body {
 .no-show-mobile{
   display: inline-block;
 }
-
+.column-actions{
+  text-align: right;
+}
 @media (max-width: 768px) {
-  .email-link{
-    display: none;
-  }
-  .email-icon{
-    font-size: x-large;
-  }
   #contacts_grid .column-email{
     text-align: center;
   }
@@ -113,10 +109,17 @@ body {
   .navbar-default .navbar-nav .open .dropdown-menu>li>a {
     color: $navbar-default-color;
   }
-  #contacts_grid .column-account_id{
+  #contacts_grid .column-account_id, #contacts_grid .column-email{
     display:none;
   }
   #users_grid .column-roles, #users_grid .column-email{
     display:none;
   }
+  #accounts_grid .column-contact, #accounts_grid .column-primarySalesRep, #accounts_grid .column-email{
+    display:none;
+  }
+}
+
+.form-group > dl {
+  margin: 25px 25px;
 }

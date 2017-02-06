@@ -3,7 +3,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h2>Add New Customer Account</h2><br/>
+            <a href="{!! route('accounts.index') !!}">< View All Accounts</a>
+            <br/>
+            <h2>Add an Account</h2>
+            <hr/>
             <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel(null)">
                 @include('accounts.fields')
             </form>

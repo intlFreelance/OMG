@@ -1,6 +1,11 @@
 <input type="hidden" ng-model="account.id"/>
 <div class="panel panel-default">
-    <div class="panel-heading">Basic Account Info</div>
+    <div class="panel-heading">
+        <div class="panel-title pull-left">
+            Basic Account Info
+        </div>
+        <div class="clearfix"></div>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">
@@ -168,7 +173,15 @@
             </div>
         </div>
     </div>
-    <div class="panel-heading">Sales Info</div>
+</div><br/>
+<!-- Sales info -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title pull-left">
+            Sales Info
+        </div>
+        <div class="clearfix"></div>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-12">
@@ -227,16 +240,12 @@
             </div>
         </div>
     </div>
-    <div class="panel-footer">
-            <!-- Submit Field -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group pull-right">
-                    <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
-                    <a href="{!! route('accounts.index') !!}" ng-show="readOnly" class="btn btn-default">Back</a>
-                    <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-primary" value="Save"/>
-                </div>
-            </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group pull-right">
+            <a href="{!! route('accounts.index') !!}" ng-show="!readOnly" class="btn btn-default">Cancel</a>
+            <input type="submit" ng-click="submitForm(accountForm)" ng-show="!readOnly" class="btn btn-primary" value="Save"/>
         </div>
     </div>
 </div>

@@ -3,9 +3,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h2>View Customer Account</h2><br/>
             <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel({!! $id !!}, true)">
-                @include('accounts.fields')
+                <a href="{!! route('accounts.index') !!}">< View All Accounts</a>
+                <br/>
+                <h2><% account.name %></h2>
+                <hr/>
+                @include('accounts.show_fields')
             </form>
         </div>
     </div>

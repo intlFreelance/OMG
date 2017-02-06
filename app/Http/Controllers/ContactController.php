@@ -49,11 +49,21 @@ class ContactController extends Controller
                     ->setSortable(true)
                     ->setSorting(Grid::SORT_ASC),*/
                 (new FieldConfig)
-                    ->setName('firstName')
+                    ->setName('fullName')
                     ->setLabel('Name')
                     ->setCallback(function ($val, $row) {
                         $contact = $row->getSrc();
                         return $contact->fullName;
+                    }),
+                (new FieldConfig)
+                    ->setName('email')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        if(empty($val)) return "";
+                        $icon = '<span class="glyphicon glyphicon-envelope"></span>';
+                        $icon = HTML::decode(HTML::link("mailto:$val", $icon));
+                        return
+                            $icon." ".HTML::link("mailto:$val", $val);
                     }),
                 (new FieldConfig)
                     ->setName('account_id')
@@ -64,15 +74,15 @@ class ContactController extends Controller
                     }),
                 (new FieldConfig)
                     ->setName('actions')
-                    ->setLabel('Actions')
+                    ->setLabel(' ')
                     ->setCallback(function($val, $row){
                         $contact = $row->getSrc();
 
                         $buttons = 
                             "<div class='btn-group'>
-                                <a href='mailto:".$contact->email."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-envelope'></i></a>
-                                <a href='".route('contacts.show', [$contact->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                <a href='". route('contacts.edit', [$contact->id])."' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
+                                <a href='mailto:".$contact->email."' class='btn btn-default btn-xs show-mobile'><i class='glyphicon glyphicon-envelope'></i></a>
+                                <a href='".route('contacts.show', [$contact->id])."' class='btn btn-primary btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                <a href='". route('contacts.edit', [$contact->id])."' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-edit'></i></a>
                                 <a href='". route('contacts.destroy', [$contact->id]) ."' data-delete=''  class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                             </div>";
                         return $buttons;
