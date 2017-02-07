@@ -186,8 +186,25 @@
             <div class="col-sm-12 form-group ">
                 <div class="col-sm-12 form-group">
                     <label for="notes">Notes</label>
-                    <textarea ng-model="account.notes" ng-disabled="readOnly" class="form-control" placeholder="Enter notes..."></textarea>
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr><th class="col-sm-4">Date</th><th class="col-sm-7">Comments</th><th class="col-sm-1"></th></tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="note in account.notes">
+                                <td><md-datepicker ng-model="dataMod[$index].dt" md-placeholder="Enter date"
+                                                   md-open-on-focus
+                                                   ng-change="note.date = dataMod[$index].dt.toISOString()"
+                                    ></md-datepicker></td>
+                                <td><input type="text" ng-model="note.comments" class="form-control"/></td>
+                                <td>
+                                    <a title="Remove note" class="remove-icon pull-right" href="javascript:void(0)" ng-if="!readOnly" ng-click="removeNote($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="col-sm-12 form-group"><a href="javascript:void(0)" ng-click="addNote()">+ Add note</a> </div>
             </div>
         </div>
     </div>
