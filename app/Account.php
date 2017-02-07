@@ -10,7 +10,8 @@ class Account extends Model
     protected $casts = [
         'billingAddress' => 'array',
         'shippingAddressSameAsBilling'=>'boolean',
-        'taxID' => 'array'
+        'taxID' => 'array',
+        'notes'=>'array',
     ];
     public function primarySalesRep()
     {

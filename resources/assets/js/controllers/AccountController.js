@@ -24,7 +24,16 @@ app.controller('AccountController', function($scope, $http, $log) {
     $scope.addTaxID = addTaxID;
     $scope.removeTaxID = removeTaxID;
     $scope.toggleForm = toggleForm;
+    $scope.account.notes = [];
+    $scope.addNote = addNote;
+    $scope.removeNote = removeNote;
+    $scope.dataMod = [];
+    $scope.formatDate = formatDate;
 
+    function formatDate(strDate){
+        var dt = new Date(strDate);
+        return dt.toLocaleString();
+    }
     function searchSalesReps(query){
         return $http
                 .get('/accounts/search-sales-rep/'+query)
@@ -61,6 +70,15 @@ app.controller('AccountController', function($scope, $http, $log) {
     function removeTaxID(index){
         $scope.account.taxID.splice(index, 1);
     }
+    function addNote(){
+        $scope.account.notes.push({date: new Date().toISOString()});
+        $scope.dataMod.push({
+            dt: new Date()
+        });
+    }
+    function removeNote(index){
+        $scope.account.notes.splice(index, 1);
+    }
     function loadModel(id, readOnly){
         $('#newContactModal').on('shown.bs.modal', function () {
             $('#contact-firstName').focus();
@@ -77,17 +95,23 @@ app.controller('AccountController', function($scope, $http, $log) {
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
             $scope.account.taxID.push({});
+            $scope.account.notes.push({});
             return;
         }
         $http.get('/accounts/get-by-id/'+id)
             .then(function(response){
                 $scope.account = response.data;
                 $scope.toggleShippingAddressSameAsBilling();
+                var i;
+                for (i = 0; i < $scope.account.notes.length; i += 1) {
+                    $scope.dataMod.push({
+                        dt: new Date($scope.account.notes[i].date)
+                    });
+                }
+                $log.info($scope.dataMod);
             });
     }
     function submitForm(form){
-        $log.info(form);
-        $log.info($scope.account);
         if(!form.$valid){
             swal(
                 'Oops...',

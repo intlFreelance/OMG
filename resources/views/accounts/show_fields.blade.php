@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <dl>
@@ -100,15 +100,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <dl>
                             <dt class="text-muted">Notes</dt>
                             <dd>
-                                <pre><% account.notes %></pre>
+                                <table class="table table-stripped">
+                                    <thead>
+                                    <tr><th class="col-sm-4">Date</th><th class="col-sm-8">Comments</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="note in account.notes">
+                                        <td><% formatDate(note.date) %></td>
+                                        <td><% note.comments %></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </dd>
                         </dl>
+                    </div>
+                    <div class="col-sm-12">
+                        <a href="{!! route('accounts.edit', [$id]) !!}" class="pull-right btn btn-primary">Add Note</a>
                     </div>
                 </div>
             </div>
