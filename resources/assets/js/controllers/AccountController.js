@@ -95,7 +95,7 @@ app.controller('AccountController', function($scope, $http, $log) {
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
             $scope.account.taxID.push({});
-            $scope.account.notes.push({});
+            $scope.addNote();
             return;
         }
         $http.get('/accounts/get-by-id/'+id)
