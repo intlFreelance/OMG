@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <title>OMG - Add an Account</title>
+    <title>Accounts</title>
 
     <!-- Android Devices-->
     <link href="{{ asset('/img/icons/OMG_accounts_192.png') }}" rel="icon" sizes="192x192" />

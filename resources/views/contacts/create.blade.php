@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <title>OMG - Add a Contact</title>
+    <title>Contacts</title>
 
     <!-- Android Devices-->
     <link href="{{ asset('/img/icons/OMG_contacts_192.png') }}" rel="icon" sizes="192x192" />
