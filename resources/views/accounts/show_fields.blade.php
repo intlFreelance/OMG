@@ -107,7 +107,7 @@
                             <dt class="text-muted">Notes</dt>
                             <dd>
                                 <table class="table table-stripped">
-                                    <thead>
+                                    <thead class="secondary-header">
                                     <tr><th class="col-sm-4">Date</th><th class="col-sm-8">Comments</th></tr>
                                     </thead>
                                     <tbody>

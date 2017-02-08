@@ -187,7 +187,7 @@
                 <div class="col-sm-12 form-group">
                     <label for="notes">Notes</label>
                     <table class="table table-stripped">
-                        <thead>
+                        <thead class="secondary-header">
                             <tr><th class="col-sm-4">Date</th><th class="col-sm-7">Comments</th><th class="col-sm-1"></th></tr>
                         </thead>
                         <tbody>
