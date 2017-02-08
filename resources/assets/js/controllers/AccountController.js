@@ -27,7 +27,6 @@ app.controller('AccountController', function($scope, $http, $log) {
     $scope.account.notes = [];
     $scope.addNote = addNote;
     $scope.removeNote = removeNote;
-    $scope.dataMod = [];
     $scope.formatDate = formatDate;
 
     function formatDate(strDate){
@@ -72,9 +71,6 @@ app.controller('AccountController', function($scope, $http, $log) {
     }
     function addNote(){
         $scope.account.notes.push({date: new Date().toISOString()});
-        $scope.dataMod.push({
-            dt: new Date()
-        });
     }
     function removeNote(index){
         $scope.account.notes.splice(index, 1);
@@ -95,20 +91,13 @@ app.controller('AccountController', function($scope, $http, $log) {
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
             $scope.account.taxID.push({});
-            $scope.account.notes.push({});
+            $scope.addNote();
             return;
         }
         $http.get('/accounts/get-by-id/'+id)
             .then(function(response){
                 $scope.account = response.data;
                 $scope.toggleShippingAddressSameAsBilling();
-                var i;
-                for (i = 0; i < $scope.account.notes.length; i += 1) {
-                    $scope.dataMod.push({
-                        dt: new Date($scope.account.notes[i].date)
-                    });
-                }
-                $log.info($scope.dataMod);
             });
     }
     function submitForm(form){
