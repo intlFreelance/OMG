@@ -192,7 +192,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="note in account.notes">
-                                <td><input type="text" ng-model="note.comments" class="form-control"/></td>
+                                <td><input type="text" ng-model="note.comments" class="form-control" placeholder="enter comments..."/></td>
                                 <td>
                                     <a title="Remove note" class="remove-icon pull-right" href="javascript:void(0)" ng-if="!readOnly" ng-click="removeNote($index)"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
