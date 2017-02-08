@@ -91,13 +91,15 @@ app.controller('AccountController', function($scope, $http, $log) {
             $scope.account.contacts.push(null);
             $scope.account.shipping_addresses.push(null);
             $scope.account.taxID.push({});
-            $scope.addNote();
             return;
         }
         $http.get('/accounts/get-by-id/'+id)
             .then(function(response){
                 $scope.account = response.data;
                 $scope.toggleShippingAddressSameAsBilling();
+                if(!readOnly){
+                    $scope.addNote();
+                }
             });
     }
     function submitForm(form){
@@ -108,6 +110,12 @@ app.controller('AccountController', function($scope, $http, $log) {
                 'error'
             ).then(function () {}, function (dismiss) {});
             return;
+        }
+        var i = $scope.account.notes.length
+        while (i--) {
+            if(isNullOrEmpty($scope.account.notes[i].comments)){
+                $scope.account.notes.splice(i, 1);
+            }
         }
         $http.post('/accounts/save', {
             data : $scope.account
