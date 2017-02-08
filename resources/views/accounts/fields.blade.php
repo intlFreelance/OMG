@@ -188,14 +188,10 @@
                     <label for="notes">Notes</label>
                     <table class="table table-stripped">
                         <thead class="secondary-header">
-                            <tr><th class="col-sm-4">Date</th><th class="col-sm-7">Comments</th><th class="col-sm-1"></th></tr>
+                            <tr><th class="col-sm-11">Comments</th><th class="col-sm-1"></th></tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="note in account.notes">
-                                <td><md-datepicker ng-model="dataMod[$index].dt" md-placeholder="Enter date"
-                                                   md-open-on-focus
-                                                   ng-change="note.date = dataMod[$index].dt.toISOString()"
-                                    ></md-datepicker></td>
                                 <td><input type="text" ng-model="note.comments" class="form-control"/></td>
                                 <td>
                                     <a title="Remove note" class="remove-icon pull-right" href="javascript:void(0)" ng-if="!readOnly" ng-click="removeNote($index)"><span class="glyphicon glyphicon-remove"></span></a>
