@@ -27,8 +27,12 @@
             <!-- Customer Account Field -->
             <div class="form-group col-sm-6 {{ $errors->has('account_id') ? 'has-error' : '' }}">
                 {!! Form::label('account_id', 'Customer Account:') !!}
-                {!! Form::select('account_id', array_merge(['' => 'select one...'], $accounts),
-                                    isset($contact)  ? $contact->account_id : null, ["class"=>"form-control"]) !!}
+                <select class="form-control" id="account_id" name="account_id">
+                    <option value="" {{ (!isset($contact)) ? 'selected' : '' }}>select one...</option>
+                    @foreach ($accounts as $id => $name)
+                        <option value="{{ $id }}" {{ (isset($contact) && $contact->account_id == $id) ? 'selected' : '' }}>{{ $name }}</option>
+                    @endforeach
+                </select>
                 <a href="{{ url('accounts/create') }}">+ Add New Account</a>
                 @if ($errors->has('account_id'))
                     <span class="help-block">
