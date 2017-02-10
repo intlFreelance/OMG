@@ -27,7 +27,7 @@
                                 <input type="text" ng-model="taxID.taxID" ng-disabled="readOnly" class="form-control" required placeholder="ex: 12-3456789"/>
                             </div>
                             <div class="col-xs-6 form-group">
-                                <select ng-model="taxID.state" ng-disabled="readOnly" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>state</option></select>
+                                <select ng-model="taxID.state" ng-disabled="readOnly" ng-style="!taxID.state && {'color': '#999'}" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>select...</option></select>
                             </div>
                         </div>
                     </div>
@@ -38,6 +38,7 @@
                             </div>
                         </div>
                     </div>
+                    <br/>
                 </div>
             </div>
 
@@ -66,7 +67,7 @@
                     <input type="text" ng-model="account.billingAddress.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                 </div>
                 <div class="col-sm-3 col-xs-6 form-group">
-                    <select ng-model="account.billingAddress.state" ng-disabled="readOnly" class="form-control" required  ng-options="s as s for s in states"><option value='' disabled>state</option></select>
+                    <select ng-model="account.billingAddress.state" ng-style="!account.billingAddress.state && {'color': '#999'}" ng-disabled="readOnly" class="form-control" required  ng-options="s as s for s in states"><option value='' disabled>select...</option></select>
                 </div>
                 <div class="col-sm-3 col-xs-6 form-group">
                     <input type="text" ng-model="account.billingAddress.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
@@ -110,7 +111,7 @@
                         <input type="text" ng-model="shippingAddress.address.city" ng-disabled="readOnly" class="form-control" required placeholder="city"/>
                     </div>
                     <div class="col-sm-3 col-xs-6 form-group">
-                        <select ng-model="shippingAddress.address.state" ng-disabled="readOnly" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>state</option></select>
+                        <select ng-model="shippingAddress.address.state" ng-style="!shippingAddress.address.state && {'color': '#999'}" ng-disabled="readOnly" class="form-control" required ng-options="s as s for s in states"><option value='' disabled>select...</option></select>
                     </div>
                     <div class="col-sm-3 col-xs-6 form-group">
                         <input type="text" ng-model="shippingAddress.address.zip" ng-disabled="readOnly" class="form-control" required placeholder="ZIP"/>
