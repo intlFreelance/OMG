@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact;
+use App\Account;
 use Session;
 
 use Grids;
@@ -119,7 +120,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contacts.create');
+        $accounts = Account::pluck('name', 'id')->all();
+        return view('contacts.create', ['accounts' => $accounts]);
     }
 
     /**

@@ -27,7 +27,7 @@
             <!-- Customer Account Field -->
             <div class="form-group col-sm-6 {{ $errors->has('account_id') ? 'has-error' : '' }}">
                 {!! Form::label('account_id', 'Customer Account:') !!}
-                {!! Form::select('account_id', [null=>'select one...'] + App\Account::pluck('name', 'id'),
+                {!! Form::select('account_id', array_merge(['' => 'select one...'], $accounts),
                                     isset($contact)  ? $contact->account_id : null, ["class"=>"form-control"]) !!}
                 <a href="{{ url('accounts/create') }}">+ Add New Account</a>
                 @if ($errors->has('account_id'))
