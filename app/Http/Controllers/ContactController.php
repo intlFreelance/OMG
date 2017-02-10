@@ -166,6 +166,7 @@ class ContactController extends Controller
     public function edit($id)
     {
         $contact = $this->loadModel($id);
+        $accounts = Account::pluck('name', 'id')->all();
         return view('contacts.edit')->with('contact', $contact);
     }
 
