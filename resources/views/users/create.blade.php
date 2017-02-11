@@ -8,7 +8,7 @@
             <br/>
             <h2>Add a User</h2>
             <hr/>
-            {!! Form::open(['route' => 'users.store']) !!}
+            {!! Form::open(['route' => 'users.store', 'novalidate'=>true]) !!}
                 @include('users.fields')
             {!! Form::close() !!}
         </div>

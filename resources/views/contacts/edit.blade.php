@@ -7,7 +7,7 @@
             <br/>
             <h2>Edit Contact</h2>
             <hr/>
-            {!! Form::model($contact, ['route' => ['contacts.update', $contact->id], 'method' => 'patch']) !!}
+            {!! Form::model($contact, ['route' => ['contacts.update', $contact->id], 'method' => 'patch', 'novalidate'=>true]) !!}
                 @include('contacts.fields')
             {!! Form::close() !!}
         </div>

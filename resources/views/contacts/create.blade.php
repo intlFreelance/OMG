@@ -20,7 +20,7 @@
             <br/>
             <h2>Add a Contact</h2>
             <hr/>
-            {!! Form::open(['route' => 'contacts.store']) !!}
+            {!! Form::open(['route' => 'contacts.store', 'novalidate'=>true]) !!}
                 @include('contacts.fields')
             {!! Form::close() !!}
         </div>

@@ -7,7 +7,7 @@
             <br/>
             <h2>Edit User</h2>
             <hr/>
-            {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+            {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch', 'novalidate'=>true]) !!}
                 @include('users.fields')
             {!! Form::close() !!}
         </div>
