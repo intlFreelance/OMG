@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel({!! $id !!})">
+            <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel({!! $id !!})" novalidate>
             <a href="{!! route('accounts.index') !!}">< View All Accounts</a>
             <br/>
             <h2 class="pull-left"><% account.name %></h2>

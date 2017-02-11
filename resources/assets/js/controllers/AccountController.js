@@ -103,6 +103,7 @@ app.controller('AccountController', function($scope, $http, $log) {
             });
     }
     function submitForm(form){
+        $log.info(form);
         if(!form.$valid){
             swal(
                 'Oops...',

@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel(null)">
+            <form  ng-controller="AccountController" name="accountForm" ng-init="loadModel(null)" novalidate>
                 <a href="{!! route('accounts.index') !!}">< View All Accounts</a>
                 <br/>
                 <h2 class="pull-left">Add an Account</h2>

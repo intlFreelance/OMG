@@ -4,7 +4,7 @@
         <div class="row">
             <!-- First Name Field -->
             <div class="form-group col-sm-6 {{ $errors->has('firstName') ? 'has-error' : '' }}">
-                {!! Form::label('firstName', 'First Name:') !!}
+                {!! Form::label('firstName', 'First Name:', ["class"=>"control-label"]) !!}
                 {!! Form::text('firstName', null, ['class' => 'form-control', 'required'=>'required']) !!}
                 @if ($errors->has('firstName'))
                     <span class="help-block">
@@ -14,7 +14,7 @@
             </div>
             <!-- Last Name Field -->
             <div class="form-group col-sm-6 {{ $errors->has('lastName') ? 'has-error' : '' }}">
-                {!! Form::label('lastName', 'Last Name:') !!}
+                {!! Form::label('lastName', 'Last Name:', ["class"=>"control-label"]) !!}
                 {!! Form::text('lastName', null, ['class' => 'form-control', 'required'=>'required']) !!}
                 @if ($errors->has('lastName'))
                     <span class="help-block">
@@ -26,7 +26,7 @@
         <div class="row">
             <!-- Customer Account Field -->
             <div class="form-group col-sm-6 {{ $errors->has('account_id') ? 'has-error' : '' }}">
-                {!! Form::label('account_id', 'Customer Account:') !!}
+                {!! Form::label('account_id', 'Customer Account:', ["class"=>"control-label"]) !!}
                 {!! Form::select('account_id', App\Account::pluck('name', 'id'),
                                     isset($contact)  ? $contact->account_id : null, ["class"=>"form-control"]) !!}
                 <a href="{{ url('accounts/create') }}">+ Add New Account</a>
@@ -36,8 +36,8 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group col-sm-6 {{ $errors->has('email') ? 'has-error' : '' }}">
-                {!! Form::label('jobTitle', 'Job Title:') !!}
+            <div class="form-group col-sm-6 {{ $errors->has('jobTitle') ? 'has-error' : '' }}">
+                {!! Form::label('jobTitle', 'Job Title:', ["class"=>"control-label"]) !!}
                 {!! Form::text('jobTitle', null, ['class' => 'form-control']) !!}
                 @if ($errors->has('jobTitle'))
                     <span class="help-block">
@@ -49,7 +49,7 @@
         <div class="row">
             <!-- Email Field -->
             <div class="form-group col-sm-6 {{ $errors->has('email') ? 'has-error' : '' }}">
-                {!! Form::label('email', 'Email:') !!}
+                {!! Form::label('email', 'Email:', ["class"=>"control-label"]) !!}
                 {!! Form::email('email', null, ['class' => 'form-control', 'required'=>'required']) !!}
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -58,7 +58,7 @@
                 @endif
             </div>
             <div class="form-group col-sm-6 {{ $errors->has('mainPhone') ? 'has-error' : '' }}">
-                {!! Form::label('mainPhone', 'Main Phone:') !!}
+                {!! Form::label('mainPhone', 'Main Phone:', ["class"=>"control-label"]) !!}
                 {!! Form::text('mainPhone', null, ['class' => 'form-control', 'required'=>'required']) !!}
                 @if ($errors->has('mainPhone'))
                     <span class="help-block">
@@ -69,7 +69,7 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6 {{ $errors->has('cellPhone') ? 'has-error' : '' }}">
-                {!! Form::label('cellPhone', 'Cell Phone:') !!}
+                {!! Form::label('cellPhone', 'Cell Phone:', ["class"=>"control-label"]) !!}
                 {!! Form::text('cellPhone', null, ['class' => 'form-control']) !!}
                 @if ($errors->has('cellPhone'))
                     <span class="help-block">
@@ -78,7 +78,7 @@
                 @endif
             </div>
             <div class="form-group col-sm-6 {{ $errors->has('workPhone') ? 'has-error' : '' }}">
-                {!! Form::label('workPhone', 'Work Phone:') !!}
+                {!! Form::label('workPhone', 'Work Phone:', ["class"=>"control-label"]) !!}
                 {!! Form::text('workPhone', null, ['class' => 'form-control']) !!}
                 @if ($errors->has('workPhone'))
                     <span class="help-block">
